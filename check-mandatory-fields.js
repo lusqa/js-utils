@@ -7,17 +7,14 @@ const _ = require('lodash');
  * @returns {array} - Returns an array of the missing fields. e.g ['person.name', 'person.age']
  */
 module.exports = (mandatoryFields, object) => {
-  const keys = Object.keys(object);
-
-  const missingFields = mandatoryFields.filter((field) => {
+  return mandatoryFields.filter((field) => {
     const splittedField = field.split('.');
     const isObject = splittedField.length > 1;
 
     if (!isObject) {
-      if (!keys.includes(field)) {
-        return field;
-      }
-      return;
+      return !object[field]
+        ? field
+        : undefined;
     }
 
     const [property, ...path] = splittedField;
@@ -27,6 +24,4 @@ module.exports = (mandatoryFields, object) => {
       return field;
     }
   });
-
-  return missingFields;
 };
