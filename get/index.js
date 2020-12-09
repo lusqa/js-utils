@@ -8,9 +8,9 @@ module.exports = (object, path) => {
   const splittedPath = path.split('.')
 
   let value = object
-  for (const property of splittedPath) {
+  splittedPath.forEach((property) => {
     value = value[property]
-  }
+  })
 
   return value
 }
