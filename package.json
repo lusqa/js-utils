@@ -1,0 +1,22 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olucasgomes/utils.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olucasgomes/utils/issues"
+  },
+  "homepage": "https://github.com/olucasgomes/utils#readme",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
