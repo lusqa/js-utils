@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const get = require('../get')
 
 /**
  * Verifies if the object has all mandatory fields
@@ -18,7 +18,7 @@ module.exports = (mandatoryFields, body) => {
     }
 
     const [property, ...path] = splittedField;
-    const hasMandatoryField = _.get(body[property], path.join('.'));
+    const hasMandatoryField = get(body[property], path.join('.'));
 
     if (!hasMandatoryField) {
       return field;
