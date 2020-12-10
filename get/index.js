@@ -4,13 +4,19 @@
  * @param {object} path - The path to access the property
  * @returns {any} - Returns the value from the path or undefined
  */
-module.exports = (object, path) => {
+const get = (object, path) => {
   const splittedPath = path.split('.')
+  const [property, ...remainingPath] = splittedPath
+
+  const isObjectPath = splittedPath.length > 1
+  if (!isObjectPath) {
+    return object[property]
+  }
 
   let value = object
-  splittedPath.forEach((property) => {
-    value = value[property]
-  })
+  value = get(value[property], remainingPath.join('.'))
 
   return value
 }
+
+module.exports = get
