@@ -6,15 +6,18 @@
  */
 const get = (object, path) => {
   const splittedPath = path.split('.')
-  const [property, ...remainingPath] = splittedPath
-
-  const isObjectPath = splittedPath.length > 1
-  if (!isObjectPath) {
-    return object[property]
-  }
 
   let value = object
-  value = get(value[property], remainingPath.join('.'))
+  splittedPath.forEach((property) => {
+    const isArrayPath = property.match(/(.*)\[(\d*)\]/)
+    if (isArrayPath) {
+      const [, subProperty, index] = isArrayPath
+      value = value[subProperty][index]
+      return
+    }
+
+    value = value[property]
+  })
 
   return value
 }
